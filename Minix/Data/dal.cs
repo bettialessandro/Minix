@@ -37,6 +37,23 @@ namespace Minix.Data
             }
 
         }
+
+        public List<reparto> GetReparti()
+        {
+            List<reparto> rep;
+            rep = db.repartos.ToList();
+            if (rep != null)
+            {
+                return rep;
+            }
+            else
+            {
+                return null;
+            }
+
+        }
+
+
         public View_Mag GetViwArticolo(int id)
         {
             View_Mag art = new View_Mag();

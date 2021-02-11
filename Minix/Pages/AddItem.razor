@@ -1,0 +1,115 @@
+﻿@page "/additem"
+<h3>AddItem</h3>
+<div class="container">
+    <EditForm Model="@art" OnValidSubmit="@ValidateUser">
+        <div>
+            <br /><br /><br /><br /><br />
+        </div>
+        <div>
+            <h3 style="font-weight:bold; color:purple">Add Article</h3>
+        </div>
+        <div>
+            <br />
+        </div>
+        <div class="col-6 row">
+            <Label>P/N Part Number</Label><br />
+        </div>
+        <div class="col-6 row">
+            <input type="text" class="form-control col-6" @bind="art.PN" placeholder="Part Number" />
+        </div>
+        <br />
+
+        <div class="col-6 row">
+            <Label>Descrizione</Label><br />
+        </div>
+        <div class="col-6 row">
+            <input type="text" class="form-control col-6" @bind="art.DESCRIZIONE" placeholder="Descrizione" />
+        </div>
+        <div class="col-6 row">
+            <Label>Stato Articolo</Label><br />
+        </div>
+        <div class="col-6 row">
+            <select class="form-control col-6" @bind="art.SATATO">
+                <option value="1">NEW</option>
+                <option value="2">O/H</option>
+                <option value="3">USED</option>
+            </select>
+        </div>
+        <div class="col-6 row">
+            <Label>Reparto</Label><br />
+        </div>
+        <div class="col-6 row">
+            <select class="form-control col-6" @bind="art.ID_REPARTO">
+                <option value="0">Not Selected</option>
+                @foreach (reparto r in rep)
+                {
+                    <option value="@r.ID">@r.DESCRIZIONE</option>
+                }
+
+            </select>
+        </div>
+        <div class="col-6 row">
+            <Label>Certificazione</Label><br />
+        </div>
+        <div class="col-6 row">
+
+            <input type="text" class="form-control col-6" @bind="art.CERTIFICAZIONE" placeholder="Certificazione" />
+        </div>
+        <div class="col-6 row">
+            <Label>Certificato</Label><br />
+        </div>
+        <div class="col-6 row">
+            <select class="form-control col-6" @bind="art.CERTIFICATO">
+                <option value="0">SI</option>
+                <option value="1">NO</option>
+
+            </select>
+        </div>
+        <div class="col-6 row">
+            <Label>Quantità</Label><br />
+        </div>
+        <div class="col-6 row">
+            <input type="text" class="form-control col-6" @bind="art.QTA" placeholder="Quantita" />
+        </div>
+        <div class="col-6 row">
+            <Label>Valore</Label><br />
+        </div>
+        <div class="col-6 row">
+            <input type="text" class="form-control col-6" @bind="art.COSTO" placeholder="Valore" />
+        </div>
+        <br />
+        <div class="col-6 row">
+            <span class="col-6"></span>
+            <input type="submit" class="form-control col-6 btn btn-primary" value="Login" />
+            <div class="col-6 row" style="text-align:left; font-weight:bold">
+                <span class="col-12">@Message</span>
+            </div>
+        </div>
+
+
+    </EditForm>
+</div>
+
+@code {
+
+    public articoli art { get; set; } = new articoli();
+    public List<reparto> rep { get; set; } = new List<reparto>();
+
+    public string Message;
+
+    protected override void OnInitialized()
+    {
+        dal d = new dal();
+        rep = d.GetReparti();
+
+    }
+
+
+
+    private void ValidateUser()
+    {
+
+
+    }
+
+}
