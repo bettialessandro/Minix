@@ -1,0 +1,86 @@
+﻿@page "/counter"
+
+<h1>Lista Articoli</h1>
+
+<Button Color="Color.Primary" Clicked="saveall">SAVE</Button>
+<input type="text" @bind-value="txtSearch" /><Button Color="Color.Secondary" Clicked="searchit">Search</Button>
+<div class="table-responsive-sm">
+    <table class="table table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">PN</th>
+                <th scope="col">[DESCRIZIONE]</th>
+                <th scope="col">[SATATO]</th>
+                <th scope="col">[CERTIFICAZIONE]</th>
+                <th scope="col">[QTA]</th>
+                <th scope="col">[COSTO]</th>
+                <th scope="col">[ID_REPARTO]</th>
+                <th scope="col">[CERTIFICATO]</th>
+                <th scope="col">[DATA]</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (View_Mag a in art)
+            {
+                <tr>
+                    <th scope="row">@a.ID</th>
+                    <td>@a.PN</td>
+                    <td>@a.DESCRIZIONE</td>
+                    <td>@a.SATATO</td>
+                    <td>@a.CERTIFICAZIONE</td>
+                    <td><input type="text" @bind=a.QTA /> </td>
+                    <td>@a.COSTO</td>
+                    <td>@a.REPARTO</td>
+                    <td>@a.CERTIFICATO</td>
+                    <td>@a.DATA</td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>
+
+
+                                                 @code {
+
+                                                     private List<View_Mag> art = new List<View_Mag>();
+                                                     private List<View_Mag> artTmp = new List<View_Mag>();
+
+                                                     string txtSearch;
+
+                                                     protected override void OnInitialized()
+                                                     {
+                                                         dal d = new dal();
+                                                         art = d.GetAllArticoli();
+                                                         artTmp = art;
+                                                     }
+
+
+                                                     public void saveall()
+                                                     {
+                                                         dal d = new dal();
+                                                         d.SaveAll(art);
+                                                     }
+
+                                                     public void searchit()
+                                                     {
+                                                         dal d = new dal();
+                                                         if (txtSearch != null && txtSearch.ToString().Trim() != "")
+                                                         {
+                                                             art = d.Search(txtSearch.ToString().Trim());
+
+                                                         }
+                                                         else
+                                                         {
+                                                             art = d.GetAllArticoli();
+                                                         }
+                                                         StateHasChanged();
+
+                                                     }
+                                                     //}
+
+
+                                                 }

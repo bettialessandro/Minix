@@ -1,0 +1,71 @@
+﻿@page "/"
+@layout NoLayout
+@inject NavigationManager navM
+
+
+<EditForm Model="@user" OnValidSubmit="@ValidateUser">
+    <div>
+        <br /><br /><br /><br /><br />
+    </div>
+    <div>
+        <h3 style="font-weight:bold; color:purple">Minix</h3>
+    </div>
+    <div>
+        <br />
+    </div>
+    <div class="col-12 row">
+        <input class="form-control col-12" @bind="user.User" placeholder="email address" />
+    </div>
+    <br />
+    <div class="col-12 row">
+        <input type="password" class="form-control col-12" @bind="user.Password" placeholder="password" />
+    </div>
+    <br />
+    <div class="col-12 row">
+        <span class="col-12"></span>
+        <input type="submit" class="form-control col-6 btn btn-primary" value="Login" />
+        <div class="col-12 row" style="text-align:left; font-weight:bold">
+            <span class="col-12">@LoginMesssage</span>
+        </div>
+    </div>
+
+
+</EditForm>
+
+@code {
+
+    Minix.Data.user user = new Minix.Data.user();
+    public string LoginMesssage { get; set; }
+
+
+
+    protected override void OnInitialized()
+    {
+
+    }
+
+
+
+    private void ValidateUser()
+    {
+        dal d = new dal();
+        if (d.cechkUser(user))
+        {
+            navM.NavigateTo("/index");
+        }
+        else
+        {
+
+            navM.NavigateTo("/");
+            LoginMesssage = "User or password Error !";
+        }
+
+    }
+
+    public class User
+    {
+        public int id { get; set; }
+        public string email { get; set; }
+        public string password { get; set; }
+    }
+}
