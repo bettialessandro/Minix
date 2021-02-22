@@ -1,42 +1,61 @@
 ﻿@page "/"
 @layout NoLayout
 @inject NavigationManager navM
- 
-        <div class="container">
-            <EditForm Model="@user" OnValidSubmit="@ValidateUser">
-                 
-                <div>
-                    <h3 style="font-weight:bold; color:purple">Minix</h3>
-                </div>
-                <div>
-                    <br />
-                </div>
-                <div class="col-4 row">
-                    User Name
-                </div>
-                <div class="col-4 row">
-                    <input class="form-control col-4" @bind="user.User" placeholder="email address" />
-                </div>
-                <br />
-                <div class="col-4 row">
-                    Password
-                </div>
-                <div class="col-4 row">
-                    <input type="password" class="form-control col-4" @bind="user.Password" placeholder="password" />
-                </div>
-                <br />
-                <div class="col-4 row">
-                    <span class="col-4"></span>
-                    <input type="submit" class="form-control col-6 btn btn-primary" value="Save" />
-                    <div class="col-4 row" style="text-align:left; font-weight:bold">
-                        <span class="col-4">@LoginMesssage</span>
+    
+        <div class="container h-100">
+            <div class="row h-100 justify-content-center align-items-center">
+                <div class="card">
+                    <div class="card-body">
+                        <EditForm Model="@user" OnValidSubmit="@ValidateUser">
+
+                            <div class="row">
+                                <h1 style="font-weight:bold">Minix</h1>
+                            </div>
+
+                            <div class="row">
+                                <br />
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    User Name
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <input class="form-control" @bind="user.User" placeholder="email address" />
+                                </div>
+
+                            </div>
+                            <div class="row">
+
+                                <div class="col-12">
+                                    Password
+                                </div>
+                            </div>
+                            <div class="row">
+
+                                <div class="col-12">
+                                    <input type="password" class="form-control" @bind="user.Password" placeholder="password" />
+                                </div>
+                            </div>
+                            <div class="row">
+
+                                <div class="col-12">
+
+                                    <input type="submit" class="form-control col-6 btn btn-primary" value="Save" />
+                                    <div class="col-12" style="text-align:left; font-weight:bold">
+                                        <span class="col-12">@LoginMesssage</span>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </EditForm>
+                        </div>
                     </div>
                 </div>
+    </div>
 
-
-            </EditForm>
-        </div>
- 
     @code {
 
         Minix.Data.user user = new Minix.Data.user();

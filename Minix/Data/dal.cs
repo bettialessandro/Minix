@@ -136,6 +136,28 @@ namespace Minix.Data
 
         }
 
+        public bool AddItem(articoli a)
+        {
+            if (a !=null)
+            {
+                articoli art = new articoli();
+                art = db.articolis.Where(x => x.PN == a.PN).FirstOrDefault();
+                if (art == null)
+                {
+                    db.articolis.Add(a);
+                    
+                    db.SaveChanges();
+
+                    return true;
+
+                }
+                return false;
+
+
+            }
+            return false;
+        }
+
 
     }
 }

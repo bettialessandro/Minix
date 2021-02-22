@@ -7,19 +7,19 @@
             <h3 style="font-weight:bold; color:purple">Add Article</h3>
         </div>
         <div class="row">
-            <div class="col-4">
+            <div class="col-6">
                 <div class="row"> <Label>P/N Part Number</Label></div>
                 <div class="row"><input type="text" class="form-control col-6" @bind="art.PN" placeholder="Part Number" /></div>
             </div>
         </div>
         <div class="row">
-            <div class="col-4">
+            <div class="col-6">
                 <div class="row"><Label>Descrizione</Label></div>
                 <div class="row"><input type="text" class="form-control col-6" @bind="art.DESCRIZIONE" placeholder="Descrizione" /></div>
             </div>
         </div>
         <div class="row">
-            <div class="col-4">
+            <div class="col-6">
                 <div class="row"><Label>Stato Articolo</Label></div>
                 <div class="row">
                     <select class="form-control col-6" @bind="art.SATATO">
@@ -31,8 +31,9 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-4">
+            <div class="col-6">
                 <div class="row"><Label>Reparto</Label></div>
+                <div class="row">
                     <select class="form-control col-6" @bind="art.ID_REPARTO">
                         <option value="0">Not Selected</option>
                         @foreach (reparto r in rep)
@@ -41,8 +42,8 @@
                         }
 
                     </select>
-
                 </div>
+               </div>
         </div>
 
 
@@ -75,10 +76,13 @@
                     <div class="col-6 row">
                         <input type="text" class="form-control col-6" @bind="art.COSTO" placeholder="Valore" />
                     </div>
-                    <br />
-                    <div class="col-6 row">
+                    <div class="row">
+                        <br />
+                    </div>
+                   
+        <div class="col-6 row">
                         <span class="col-6"></span>
-                        <input type="submit" class="form-control col-6 btn btn-primary" value="Login" />
+                        <input type="submit" class="form-control col-6 btn btn-primary" value="Save" />
                         <div class="col-6 row" style="text-align:left; font-weight:bold">
                             <span class="col-12">@Message</span>
                         </div>
@@ -106,7 +110,8 @@
 
     private void ValidateUser()
     {
-
+        dal d = new dal();
+        d.AddItem(art);
 
     }
 
