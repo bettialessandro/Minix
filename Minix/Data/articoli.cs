@@ -22,7 +22,7 @@ namespace Minix
         public int? QTA { get; set; }
         public double? COSTO { get; set; }
         public int? ID_REPARTO { get; set; }
-        public bool? CERTIFICATO { get; set; }
+        public string CERTIFICATO { get; set; }
         [Column(TypeName = "date")]
         public DateTime? DATA { get; set; }
 

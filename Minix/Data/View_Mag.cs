@@ -23,7 +23,7 @@ namespace Minix
         public double? COSTO { get; set; }
         [StringLength(100)]
         public string REPARTO { get; set; }
-        public bool? CERTIFICATO { get; set; }
+        public string CERTIFICATO { get; set; }
         [Column(TypeName = "date")]
         public DateTime? DATA { get; set; }
     }

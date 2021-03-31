@@ -8,94 +8,138 @@
         </div>
         <div class="row">
             <div class="col-6">
-                <div class="row"> <Label>P/N Part Number</Label></div>
-                <div class="row"><input type="text" class="form-control col-6" @bind="art.PN" placeholder="Part Number" /></div>
+                 <Label>P/N Part Number</Label> 
+            </div>
+            </div>
+        <div class="row">
+            <div class="col-6">
+                 <input type="text" class="form-control col-6" @bind="art.PN" placeholder="Part Number" /> 
             </div>
         </div>
         <div class="row">
             <div class="col-6">
-                <div class="row"><Label>Descrizione</Label></div>
-                <div class="row"><input type="text" class="form-control col-6" @bind="art.DESCRIZIONE" placeholder="Descrizione" /></div>
+                 <Label>Descrizione</Label>
+            </div>
+            </div>
+        <div class="row">
+            <div class="col-6">
+                 <input type="text" class="form-control col-6" @bind="art.DESCRIZIONE" placeholder="Descrizione" /> 
             </div>
         </div>
         <div class="row">
             <div class="col-6">
-                <div class="row"><Label>Stato Articolo</Label></div>
+                <Label>Stato Articolo</Label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-6">
+                <select class="form-control col-6" @bind="art.SATATO">
+                    <option value="1">NEW</option>
+                    <option value="2">O/H</option>
+                    <option value="3">USED</option>
+                </select>
+            </div>
+        </div>
+       
+        <div class="row">
+            <div class="col-6">
+            
+                <Label>Reparto</Label>
+                
+            </div>
+        </div>
                 <div class="row">
-                    <select class="form-control col-6" @bind="art.SATATO">
-                        <option value="1">NEW</option>
-                        <option value="2">O/H</option>
-                        <option value="3">USED</option>
-                    </select>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-6">
-                <div class="row"><Label>Reparto</Label></div>
-                <div class="row">
-                    <select class="form-control col-6" @bind="art.ID_REPARTO">
-                        <option value="0">Not Selected</option>
-                        @foreach (reparto r in rep)
-                        {
-                            <option value="@r.ID">@r.DESCRIZIONE</option>
-                        }
-
-                    </select>
-                </div>
-               </div>
-        </div>
-
-
-                    <div class="col-6 row">
-                        <Label>Certificazione</Label><br />
-                    </div>
-                    <div class="col-6 row">
-
-                        <input type="text" class="form-control col-6" @bind="art.CERTIFICAZIONE" placeholder="Certificazione" />
-                    </div>
-                    <div class="col-6 row">
-                        <Label>Certificato</Label><br />
-                    </div>
-                    <div class="col-6 row">
-                        <select class="form-control col-6" @bind="art.CERTIFICATO">
-                            <option value="0">SI</option>
-                            <option value="1">NO</option>
+                    <div class="col-6">
+                        <select class="form-control col-6" @bind="art.ID_REPARTO">
+                            <option value="0">Not Selected</option>
+                            @foreach (reparto r in rep)
+                            {
+                                <option value="@r.ID">@r.DESCRIZIONE</option>
+                            }
 
                         </select>
                     </div>
-                    <div class="col-6 row">
-                        <Label>Quantità</Label><br />
-                    </div>
-                    <div class="col-6 row">
-                        <input type="text" class="form-control col-6" @bind="art.QTA" placeholder="Quantita" />
-                    </div>
-                    <div class="col-6 row">
-                        <Label>Valore</Label><br />
-                    </div>
-                    <div class="col-6 row">
-                        <input type="text" class="form-control col-6" @bind="art.COSTO" placeholder="Valore" />
-                    </div>
-                    <div class="row">
-                        <br />
-                    </div>
-                   
-        <div class="col-6 row">
-                        <span class="col-6"></span>
-                        <input type="submit" class="form-control col-6 btn btn-primary" value="Save" />
-                        <div class="col-6 row" style="text-align:left; font-weight:bold">
-                            <span class="col-12">@Message</span>
-                        </div>
-                    </div>
+            </div>
+         
 
+        <div class="row">
+            <div class="col-6">
+                <Label>Certificazione</Label> 
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+
+                <input type="text" class="form-control col-6" @bind="art.CERTIFICAZIONE" placeholder="Certificazione" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <Label>Certificato</Label><br />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <InputSelect @bind-Value="art.CERTIFICATO">
+                    @foreach (var a in Enum.GetValues(typeof(CERTIFICATO)))
+                    {
+                        <option value=@a>@a</option>
+                    }
+
+                </InputSelect>
+
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <Label>Quantità</Label><br />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <input type="text" class="form-control col-6" @bind="art.QTA" placeholder="Quantita" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <Label>Valore</Label><br />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <input type="text" class="form-control col-6" @bind="art.COSTO" placeholder="Valore" />
+            </div>
+            </div>
+            <div class="row">
+                <br />
+            </div>
+        
+            <div class="row">
+                <div class="col-6 row">
+                    <span class="col-6"></span>
+                    <input type="submit" class="form-control col-6 btn btn-primary" value="Save" />
+                    <div class="col-6" style="text-align:left; font-weight:bold">
+                        <span class="col-12">@Message</span>
+                    </div>
+                </div>
+            </div>
 
     </EditForm>
+    <Snackbar @ref="snackbar" Location="SnackbarLocation.Right">
+        <SnackbarBody >
+           Item Inserted!
+        </SnackbarBody>
+        
+    </Snackbar>
 </div>
 
 @code {
 
     public articoli art { get; set; } = new articoli();
     public List<reparto> rep { get; set; } = new List<reparto>();
+    Snackbar snackbar;
 
     public string Message;
 
@@ -111,8 +155,24 @@
     private void ValidateUser()
     {
         dal d = new dal();
-        d.AddItem(art);
+        DateTime localDate = DateTime.Now;
+        art.DATA = localDate;
 
+
+
+        if (d.AddItem(art))
+        {
+            snackbar.Show();
+        }
+        
+        ShouldRender();
+    }
+
+    public enum CERTIFICATO
+    {
+        NOT,
+        SI,
+        NO
     }
 
 }
