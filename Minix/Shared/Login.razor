@@ -1,6 +1,7 @@
 ﻿@page "/"
 @layout NoLayout
 @inject NavigationManager navM
+<<<<<<< HEAD
     
         <div class="container h-100">
             <div class="row h-100 justify-content-center align-items-center">
@@ -57,39 +58,91 @@
     </div>
 
     @code {
-
-        Minix.Data.user user = new Minix.Data.user();
-        public string LoginMesssage { get; set; }
-
-
-
-        protected override void OnInitialized()
-        {
-
-        }
-
+=======
+<main>
+    <section class="glass">
+        <div class="dashboard">
+            <div class="container card">
+                <div class="row">
+                    <h2 style="font-weight:bold">Minix</h2>
+                </div>
+                <EditForm Model="@user" OnValidSubmit="@ValidateUser">
 
 
-        private void ValidateUser()
-        {
-            dal d = new dal();
-            if (d.cechkUser(user))
-            {
-                navM.NavigateTo("/index");
+                    <div class="row">
+                        <div class="col-12">
+                            User Name
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <input class="form-control" @bind="user.User" placeholder="email address" />
+                        </div>
+                        <br />
+                    </div>
+                    <div class="row">
+
+                        <div class="col-12">
+                            Password
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <input type="password" class="form-control" @bind="user.Password" placeholder="password" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <br />
+                    </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <input type="submit" class="form-control btn btn-primary" value="Login" />
+                                <div class="col-12" style="text-align:left; font-weight:bold">
+                                    <span class="col-12">@LoginMesssage</span>
+                                </div>
+                            </div>
+                        </div>
+
+                </EditForm>
+            </div>
+</div>
+</section>
+</main>
+            @code {
+>>>>>>> 8befb01307c7c26141441e1d12838dcf2136857b
+
+                Minix.Data.user user = new Minix.Data.user();
+                public string LoginMesssage { get; set; }
+
+
+
+                protected override void OnInitialized()
+                {
+
+                }
+
+
+
+                private void ValidateUser()
+                {
+                    dal d = new dal();
+                    if (d.cechkUser(user))
+                    {
+                        navM.NavigateTo("/index");
+                    }
+                    else
+                    {
+
+                        navM.NavigateTo("/");
+                        LoginMesssage = "User or password Error !";
+                    }
+
+                }
+
+                public class User
+                {
+                    public int id { get; set; }
+                    public string email { get; set; }
+                    public string password { get; set; }
+                }
             }
-            else
-            {
-
-                navM.NavigateTo("/");
-                LoginMesssage = "User or password Error !";
-            }
-
-        }
-
-        public class User
-        {
-            public int id { get; set; }
-            public string email { get; set; }
-            public string password { get; set; }
-        }
-    }
