@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
  
 
@@ -117,6 +118,51 @@ namespace Minix.Data
             }
         }
 
+        public List<View_Mag> SearchByDescription(string Desc)
+        {
+
+            List<View_Mag> a = new List<View_Mag>();
+            List<View_Mag> ret = new List<View_Mag>();
+
+            if (Desc != "")
+            {
+
+                var result = from i in db.articolis
+                             where i.DESCRIZIONE.Contains(Desc)
+                             select i;
+                              
+                a = db.View_Mags.ToList();
+
+               foreach(articoli r in result)
+                {
+
+                    View_Mag vm = new View_Mag();
+
+                    vm = a.Where(x => x.ID == r.ID).FirstOrDefault();
+
+                if (vm !=null)
+                    {
+                        ret.Add(vm);
+                    }
+
+
+                }
+
+                
+            }
+            
+            if (ret != null)
+            {
+                return ret;
+
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+
         public bool cechkUser(user u)
         {
             List<user> ut = new List<user>();
@@ -157,7 +203,6 @@ namespace Minix.Data
             }
             return false;
         }
-
 
     }
 }

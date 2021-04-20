@@ -4,8 +4,13 @@
 <h1>Lista Articoli</h1>
 
 <Button Color="Color.Primary" Clicked="saveall">SAVE</Button>
-<input type="text" @bind-value="txtSearch" /><Button Color="Color.Secondary" Clicked="searchit">Search</Button>
+<input type="text" @bind-value="txtSearch" />
+<Button Color="Color.Secondary" Clicked="searchit">Search</Button>
 <Button Color="Color.Primary" Clicked="additem">ADD</Button>
+<br />
+<input type="text" @bind-value="txtdescription" />
+<Button Color="Color.Secondary" Clicked="searchitBydescription">Search Desc.</Button>
+
 <div class="table-responsive-sm">
     <table class="table table-hover">
         <thead class="thead-dark">
@@ -52,6 +57,7 @@
     private List<View_Mag> artTmp = new List<View_Mag>();
 
     string txtSearch;
+    string txtdescription;
 
     protected override void OnInitialized()
     {
@@ -61,14 +67,30 @@
     }
 
     public void additem()
-        {
+    {
         nav.NavigateTo("/AddItem");
-        }
+    }
 
     public void saveall()
     {
         dal d = new dal();
         d.SaveAll(art);
+    }
+
+
+    public void searchitBydescription()
+    {
+        dal d = new dal();
+        if (txtdescription != null && txtdescription.ToString().Trim() != "")
+        {
+            art = d.SearchByDescription(txtdescription.ToString().Trim());
+
+        }
+        else
+        {
+            art = d.GetAllArticoli();
+        }
+        StateHasChanged();
     }
 
     public void searchit()
